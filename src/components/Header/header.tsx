@@ -4,7 +4,7 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 
 function Header() {
   return (
-    <div className="flex justify-around items-center px-8 py-6">
+    <div className="flex justify-around items-center py-6 border-b border-gray-200">
       <div>
         <h1 className="text-2xl font-bold drop-shadow-2xl">Magali Store</h1>
       </div>
