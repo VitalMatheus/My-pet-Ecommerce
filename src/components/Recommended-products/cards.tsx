@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react'
 import { Product } from '@/types/product';
+import Footer from '@/components/Footer/footer';
 
 function Cards({ data }: { data: Product[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -13,9 +14,9 @@ function Cards({ data }: { data: Product[] }) {
     <div className="flex justify-center items-center overflow-hidden mt-10" ref={emblaRef}>
       <div className="flex">
         {data.map((item: Product) => (
-          <>
+          <div key={item.id}>
             {item.recommended && (
-              <div key={item.id} className="flex-[0_0_25%]">
+              <div className="flex-[0_0_25%]">
                 <div className="flex flex-col items-center justify-evenly h-80">
                   <Link href={`/product/${item.id}`}>
                     <div className="flex justify-center border border-gray-200 rounded-lg mx-4">
@@ -33,7 +34,7 @@ function Cards({ data }: { data: Product[] }) {
                 </div>
               </div>
             )}
-          </>
+          </div>
         ))}
       </div>
 
