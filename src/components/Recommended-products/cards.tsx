@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react'
 import { Product } from '@/types/product';
 
@@ -16,9 +17,11 @@ function Cards({ data }: { data: Product[] }) {
             {item.recommended && (
               <div key={item.id} className="flex-[0_0_25%]">
                 <div className="flex flex-col items-center justify-evenly h-80">
-                  <div className="flex justify-center border border-gray-200 rounded-lg mx-4">
-                    <Image src={item.image} alt={item.description} width="184" height="184" />
-                  </div>
+                  <Link href={`/product/${item.id}`}>
+                    <div className="flex justify-center border border-gray-200 rounded-lg mx-4">
+                      <Image src={item.image} alt={item.description} width="184" height="184" />
+                    </div>
+                  </Link>
                   <div className="w-4/5 flex flex-col">
                     <p className="text-sm font-semibold">{item.name}</p>
                     <p className="text-sm font-light">{item.description.length > 40 ? item.description.slice(0, 40) + '...' : item.description}</p>
