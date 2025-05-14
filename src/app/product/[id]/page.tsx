@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useFetch } from '@/hooks/useFetch';
 import Header from "@/components/Header/header";
+import Footer from '@/components/Footer/footer';
 
 function Product() {
   const { id } = useParams();
@@ -59,6 +60,7 @@ function Product() {
 
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
