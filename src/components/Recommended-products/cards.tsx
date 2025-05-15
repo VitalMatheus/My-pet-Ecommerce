@@ -2,24 +2,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react'
 import { Product } from '@/types/product';
-import Footer from '@/components/Footer/footer';
 
 function Cards({ data }: { data: Product[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
-  const scrollPrev = () => emblaApi?.scrollPrev();
-  const scrollNext = () => emblaApi?.scrollNext();
-
   return (
-    <div className="flex justify-center items-center overflow-hidden mt-10" ref={emblaRef}>
+    <div className="flex items-center mt-10 overflow-hidden" ref={emblaRef}>
       <div className="flex">
         {data.map((item: Product) => (
-          <div key={item.id}>
+          <div className="flex-[0_0_25%]" key={item.id}>
             {item.recommended && (
-              <div className="flex-[0_0_25%]">
+              <div>
                 <div className="flex flex-col items-center justify-evenly h-80">
                   <Link href={`/product/${item.id}`}>
-                    <div className="flex justify-center border border-gray-200 rounded-lg mx-4">
+                    <div className="flex justify-center border border-gray-200 rounded-lg">
                       <Image src={item.image} alt={item.description} width="184" height="184" />
                     </div>
                   </Link>
@@ -39,14 +35,14 @@ function Cards({ data }: { data: Product[] }) {
       </div>
 
       <button
-        onClick={scrollPrev}
-        className="absolute left-3/15 top-9/15 -translate-y-1/2 bg-white shadow px-2 py-1 rounded-full"
+        onClick={() => emblaApi?.scrollPrev()}
+        className="absolute left-3/15 top-9/15 w-8 h-8 -translate-y-1/2 bg-white shadow rounded-full"
       >
         ◀
       </button>
       <button
-        onClick={scrollNext}
-        className="absolute right-3/15 top-9/15 -translate-y-1/2 bg-white shadow px-2 py-1 rounded-full"
+        onClick={() => emblaApi?.scrollNext()}
+        className="absolute right-3/15 top-9/15 w-8 h-8 -translate-y-1/2 bg-white shadow rounded-full"
       >
         ▶
       </button>
