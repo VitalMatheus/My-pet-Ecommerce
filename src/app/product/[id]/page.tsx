@@ -3,8 +3,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useFetch } from '@/hooks/useFetch';
-import Header from "@/components/Header/header";
-import Footer from '@/components/Footer/footer';
 
 function Product() {
   const { id } = useParams();
@@ -16,7 +14,6 @@ function Product() {
   if (!product) return;
   return (
     <div>
-      <Header />
       <div className="flex justify-center items-center my-20">
         <div>
           <Image src={product.image} alt="promotions" width="500" height="600" />
@@ -57,7 +54,6 @@ function Product() {
 
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
