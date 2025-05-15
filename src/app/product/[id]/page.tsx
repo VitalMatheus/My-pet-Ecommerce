@@ -11,18 +11,13 @@ function Product() {
   const [quantity, setQuantity] = useState(1);
   const { data: product, loading, error } = useFetch(`http://localhost:3001/${id}`)
 
-  const increment = () => setQuantity(prev => prev + 1);
-  const decrement = () => {
-    if (quantity > 1) setQuantity(prev => prev - 1);
-  };
-
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
   if (!product) return;
   return (
     <div>
       <Header />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center my-20">
         <div>
           <Image src={product.image} alt="promotions" width="500" height="600" />
         </div>
@@ -40,16 +35,18 @@ function Product() {
           <p className="text-sm">{product.description}</p>
 
           <div className="flex gap-4">
-            <div className="flex border rounded overflow-hidden w-40 text-center">
+            <div className="flex border rounded overflow-hidden w-44 text-center">
               <button
-                onClick={decrement}
+                onClick={() => {
+                  if (quantity > 1) setQuantity(prev => prev - 1);
+                }}
                 className="w-1/3 border-r text-xl hover:bg-gray-100"
               >
                 –
               </button>
               <div className="w-1/3 flex items-center justify-center">{quantity}</div>
               <button
-                onClick={increment}
+                onClick={() => setQuantity(prev => prev + 1)}
                 className="w-1/3 bg-red-500 text-white text-xl hover:bg-red-600"
               >
                 +
