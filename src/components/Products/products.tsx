@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Cards from "./cards";
+import Cards from "../Cards/cards";
 
 
 function RecommendedProducts() {
@@ -24,11 +24,21 @@ function RecommendedProducts() {
   }, []);
 
   return (
-    <div className="w-6xl py-4 m-auto">
-      <div className="flex">
-        <div className="flex flex-col w-5/6 m-auto py-20">
+    <div className="w-6xl m-auto">
+      <div className="flex flex-col">
+        <div className="flex flex-col w-5/6 m-auto py-8 mt-20">
           <h1 className="text-xl font-semibold">Recommended Products</h1>
-          <Cards data={data} />
+          <Cards data={data} prop={"recommended"} />
+        </div>
+
+        <div className="flex flex-col w-5/6 m-auto py-8">
+          <h1 className="text-xl font-semibold">Dogs</h1>
+          <Cards data={data} prop={"dogs"} />
+        </div>
+
+        <div className="flex flex-col w-5/6 m-auto py-8">
+          <h1 className="text-xl font-semibold">Cats</h1>
+          <Cards data={data} prop={"cats"} />
         </div>
       </div>
     </div>

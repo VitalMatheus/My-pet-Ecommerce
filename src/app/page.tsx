@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar/navbar";
 import Carousel from "@/components/Carousel/carousel";
-import RecommendedProducts from "@/components/Recommended-products/recommended-products";
+import RecommendedProducts from "@/components/Products/products";
 
 export default function Home() {
   return (
