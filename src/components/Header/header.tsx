@@ -15,7 +15,7 @@ function Header() {
       <div className="flex justify-evenly w-sm text-base">
         <Link href="/">Home</Link>
         <Link href="/contact">Contact</Link>
-        <p>About</p>
+        <Link href="/about">About</Link>
         <p>Sign Up</p>
       </div>
 
