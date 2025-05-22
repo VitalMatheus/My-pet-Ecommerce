@@ -11,3 +11,21 @@ export interface Product {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface RootState {
+  cart: {
+    products: Array<{
+      name: string;
+      price: number;
+      image: string;
+      quantity: number;
+    }>;
+  };
+}
+
+export type CartItemType = {
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+};
