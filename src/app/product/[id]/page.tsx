@@ -1,14 +1,17 @@
 "use client"
+import { useState } from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementProduct, decrementProduct } from '@/redux/cartSlice';
 import { useParams } from 'next/navigation';
 import { useFetch } from '@/hooks/useFetch';
+import AddedToCart from '@/components/AddedToCart/addedToCart';
 
 function Product() {
   const { id } = useParams();
   const { data: product, loading, error } = useFetch(`http://localhost:3001/${id}`)
 
+  const [addedToCart, setAddedToCart] = useState(true);
   const dispatch = useDispatch();
 
   interface RootState {
@@ -48,6 +51,11 @@ function Product() {
   if (error) return <p>Erro: {error}</p>;
   if (!product) return;
 
+  if (addedToCart) {
+    return (
+      <AddedToCart image={product.image} name={product.name} price={product.price} />
+    )
+  }
   return (
     <div>
       <div className="flex justify-center items-center my-20">
@@ -83,7 +91,7 @@ function Product() {
                 +
               </button>
             </div>
-            <button className="w-2/4 bg-red-500 text-white text-xl rounded">Buy Now</button>
+            <button onClick={() => setAddedToCart(true)} className="w-2/4 bg-red-500 text-white text-xl rounded">Buy Now</button>
           </div>
 
         </div>
