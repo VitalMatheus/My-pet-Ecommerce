@@ -22,11 +22,13 @@ function Header() {
       <div className="flex items-center">
         <div className="flex items-center">
           <input type="text" placeholder="What are you looking for?" className="bg-gray-100 rounded-sm py-2 px-4" />
-          <HiMagnifyingGlass className="relative right-6 text-base"  />
+          <HiMagnifyingGlass className="relative right-6 text-xl"  />
         </div>
-        <span>
-          <PiShoppingCartSimpleLight className="text-base" />
-        </span>
+        <Link href="/cart">
+          <span>
+            <PiShoppingCartSimpleLight className="text-2xl" />
+          </span>
+        </Link>
       </div>
     </div>
   )

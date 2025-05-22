@@ -1,17 +1,53 @@
 "use client"
-import { useState } from 'react';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import { incrementProduct, decrementProduct } from '@/redux/cartSlice';
 import { useParams } from 'next/navigation';
 import { useFetch } from '@/hooks/useFetch';
 
 function Product() {
   const { id } = useParams();
-  const [quantity, setQuantity] = useState(1);
   const { data: product, loading, error } = useFetch(`http://localhost:3001/${id}`)
+
+  const dispatch = useDispatch();
+
+  interface RootState {
+    cart: {
+      products: Array<{
+        name: string;
+        price: number;
+        image: string;
+        quantity: number;
+      }>;
+    };
+  }
+
+  const cartProduct = useSelector((state: RootState) =>
+    state.cart.products.find((item) => item.name === product?.name)
+  );
+
+  const quantity = cartProduct ? cartProduct.quantity : 0;
+
+  const addProductToCart = () => {
+    dispatch(
+      incrementProduct({
+        name: product?.name,
+        price: product?.price,
+        image: product?.image,
+        quantity: 1,
+      })
+    );
+  };
+
+  const removeProductFromCart = () => {
+    dispatch(decrementProduct({ name: product?.name }));
+  };
+
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
   if (!product) return;
+
   return (
     <div>
       <div className="flex justify-center items-center my-20">
@@ -34,16 +70,14 @@ function Product() {
           <div className="flex gap-4">
             <div className="flex border rounded overflow-hidden w-44 text-center">
               <button
-                onClick={() => {
-                  if (quantity > 1) setQuantity(prev => prev - 1);
-                }}
+                onClick={removeProductFromCart}
                 className="w-1/3 border-r text-xl hover:bg-gray-100"
               >
                 –
               </button>
               <div className="w-1/3 flex items-center justify-center">{quantity}</div>
               <button
-                onClick={() => setQuantity(prev => prev + 1)}
+                onClick={addProductToCart}
                 className="w-1/3 bg-red-500 text-white text-xl hover:bg-red-600"
               >
                 +

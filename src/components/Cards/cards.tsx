@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react'
+import { CiCirclePlus } from "react-icons/ci";
 import { Product } from '@/types/product';
 
 function Cards({ data, prop }: { data: Product[], prop: string }) {
@@ -26,10 +27,11 @@ function Cards({ data, prop }: { data: Product[], prop: string }) {
               <div className="flex-[0_0_25%]" key={item.id}>
                 <div className="flex flex-col items-center justify-evenly h-80">
                   <Link href={`/product/${item.id}`}>
-                    <div className="flex justify-center border border-gray-200 rounded-lg">
+                    <div className="flex justify-center border border-gray-200 rounded-lg relative">
                       <Image src={item.image} alt={item.description} width="184" height="184" />
                     </div>
                   </Link>
+                  <CiCirclePlus className="absolute bottom-30 right-5 text-5xl" />
                   <div className="w-4/5 flex flex-col">
                     <p className="text-sm font-semibold">{item.name}</p>
                     <p className="text-sm font-light">

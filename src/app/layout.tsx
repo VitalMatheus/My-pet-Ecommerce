@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Providers } from '../redux/provider'
 import Header from "@/components/Header/header";
 import Footer from "@/components/Footer/footer";
 
@@ -29,11 +30,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <Header />
-        <div className="flex-grow">
-          {children}
-        </div>
-        <Footer />
+        <Providers>
+          <Header />
+          <div className="flex-grow">
+            {children}
+          </div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
