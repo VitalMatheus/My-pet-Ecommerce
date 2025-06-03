@@ -21,7 +21,7 @@ function Header() {
         <Link href="/">Home</Link>
         <Link href="/contact">Contact</Link>
         <Link href="/about">About</Link>
-        <p>Sign Up</p>
+        <Link href="/signup">Sign Up</Link>
       </div>
 
       <div className="flex items-center">
