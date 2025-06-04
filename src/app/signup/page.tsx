@@ -3,6 +3,7 @@ import { useState } from "react";
 import { usePost } from "@/hooks/usePost";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ function SignUp() {
       setEmail("");
       setPassword("");
     }
+    redirect("/")
   }
 
   return (

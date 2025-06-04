@@ -37,6 +37,7 @@ export function usePost<T = any>(url: string): PostResponse<T> {
 
       const json = await res.json();
       setData(json);
+      return json;
     } catch (err: any) {
       setError(err.message || 'An error occurred');
     } finally {
